@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class MainClassRoom {
     static String Item[][] = new String[20][2];
     static int icount = 0;
+    static boolean profcom = false;
 
 
     public static void main(String[] args) {
         boolean init =false;
+
 
         Scanner s = new Scanner(System.in);
 
@@ -30,6 +32,13 @@ public class MainClassRoom {
             }
             else if(con.equals("password") || con.equals("Password") || con.equals("PASSWORD")){
                 System.out.println("비밀 번호를 입력하시오. ");
+                int a = s.nextByte();
+                if(a == 9917){
+                    profcom = true;
+                }
+                else{
+                    System.out.println("비밀번호가 일치하지 않습니다.");
+                }
             }
         }
 
@@ -77,20 +86,40 @@ public class MainClassRoom {
     }
 
     static void ProfCom(){
-        System.out.println("┌──────────────────────────────────────────────────────────────────────────────┐");
-        System.out.println("│                                                                   BACK ->    │" + "              *비밀번호 창이 존재할 경우 Password 입력 후 비밀번호 창이 활성화 될 때 ");
-        System.out.println("│                 ┌──────────────────────────────────────┐                     │" + "               비밀번호를 입력하시면 됩니다. ");
-        System.out.println("│                 │                                      │                     │" + "              *BACK 입력 시 뒤로가기가 가능합니다. ");
-        System.out.println("│                 │                                      │                     │");
-        System.out.println("│                 │                                      │                     │");
-        System.out.println("│                 │          [  _  _  _  _   ]           │                     │");
-        System.out.println("│                 │          PASSWORD REQUIRED           │                     │");
-        System.out.println("│                 │                                      │                     │");
-        System.out.println("│                 │                                      │                     │");
-        System.out.println("│                 │                                      │                     │");
-        System.out.println("│                 └──────────────────────────────────────┘                     │");
-        System.out.println("│                                                                              │");
-        System.out.println("└──────────────────────────────────────────────────────────────────────────────┘");
+        if(profcom){
+            System.out.println("┌──────────────────────────────────────────────────────────────────────────────┐");
+            System.out.println("│                                                                   BACK ->    │" + "              *BACK 입력 시 뒤로가기가 가능합니다. ");
+            System.out.println("│                                 ■   ■  ■                                     │" + "              *비밀번호를 풀었습니다 다른 방을 탐색하십시오. ");
+            System.out.println("│                              ■            ■                                  │");
+            System.out.println("│                            ■                ■                                │");
+            System.out.println("│                                            ■                                 │");
+            System.out.println("│                                         ■                                    │");
+            System.out.println("│                                      ■                                       │");
+            System.out.println("│                                  ■                                           │");
+            System.out.println("│                               ■                                              │");
+            System.out.println("│                           ■   ■   ■   ■   ■   ■                              │");
+            System.out.println("│                                                                              │");
+            System.out.println("│                         Y    E    L    L    O    W                           │");
+            System.out.println("└──────────────────────────────────────────────────────────────────────────────┘");
+
+        }
+        else{
+            System.out.println("┌──────────────────────────────────────────────────────────────────────────────┐");
+            System.out.println("│                                                                   BACK ->    │" + "              *비밀번호 창이 존재할 경우 Password 입력 후 비밀번호 창이 활성화 될 때 ");
+            System.out.println("│                 ┌──────────────────────────────────────┐                     │" + "               비밀번호를 입력하시면 됩니다. ");
+            System.out.println("│                 │                                      │                     │" + "              *BACK 입력 시 뒤로가기가 가능합니다. ");
+            System.out.println("│                 │                                      │                     │");
+            System.out.println("│                 │                                      │                     │");
+            System.out.println("│                 │          [  _  _  _  _   ]           │                     │");
+            System.out.println("│                 │          PASSWORD REQUIRED           │                     │");
+            System.out.println("│                 │                                      │                     │");
+            System.out.println("│                 │                                      │                     │");
+            System.out.println("│                 │                                      │                     │");
+            System.out.println("│                 └──────────────────────────────────────┘                     │");
+            System.out.println("│                                                                              │");
+            System.out.println("└──────────────────────────────────────────────────────────────────────────────┘");
+        }
+
 
     }
 
