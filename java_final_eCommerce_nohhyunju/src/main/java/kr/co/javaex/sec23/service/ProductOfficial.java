@@ -46,7 +46,8 @@ public class ProductOfficial {
 
 
         System.out.println("상품 이름 입력");
-        String name = s.next();
+        String name = s.nextLine();
+        // next 를 사용하면 뛰어쓰기 시 자꾸 오류 발생 그래서 gpt한테 학습
         np.setName(name);
 
         System.out.println("가격 입력");
@@ -54,7 +55,7 @@ public class ProductOfficial {
         np.setPrice(price);
 
         System.out.println("설명 입력");
-        String ex = s.next();
+        String ex = s.nextLine();
         np.setEx(ex);
 
         System.out.println("재고 수량 입력");

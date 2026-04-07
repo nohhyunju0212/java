@@ -6,8 +6,35 @@ import kr.co.javaex.sec23.util.ReadUser;
 
 public class MakeAccount {
 
-    boolean login = false;
-    User loginUser = null;
+    static boolean login = false;
+    static User loginUser = null;
+
+    public static boolean Ami(){
+        return login;
+    }
+
+    public static String myid(){
+        if(loginUser == null){
+            return null;
+        }
+        return loginUser.getId();
+    }
+
+    public static boolean isOfficial(){
+        if(loginUser == null){
+            return false;
+        }
+
+        if(loginUser.getRole() == null){
+            return false;
+        }
+
+        return loginUser.getRole().equals("관리자");
+    }
+
+    public static User me(){
+        return loginUser;
+    }
 
     public void makeUser() {
         Scanner s = new Scanner(System.in);
@@ -180,24 +207,24 @@ public class MakeAccount {
 
         User[] users = read.readUser();
 
-        String id;
+        String email;
         String password;
         User target = null;
 
         while (true) {
             target = null;
-            System.out.println("ID 입력");
-            id = s.next();
+            System.out.println("이메일 입력");
+            email = s.next();
 
             for (int i = 0; i < users.length; i++) {
-                if (users[i].getId().equals(id)) {
+                if (users[i].getEmail().equals(email)) {
                     target = users[i];
                     break;
                 }
             }
 
             if (target == null) {
-                System.out.println("존재하지 않습니다.");
+                System.out.println("존재하지 않는 이메일입니다.");
             } else {
                 break;
             }
@@ -227,6 +254,18 @@ public class MakeAccount {
 
                 login = true;
                 loginUser = target;
+
+                ProductOfficial po = new ProductOfficial();
+                Categoriesoffical co = new Categoriesoffical();
+
+                if (isOfficial()) {
+                    po.official = true;
+                    Categoriesoffical.official = true;
+                } else {
+                    po.official = false;
+                    Categoriesoffical.official = false;
+                }
+
                 System.out.println(target.getName() + "님 로그인 성공");
                 break;
             } else {
@@ -244,6 +283,10 @@ public class MakeAccount {
         System.out.println(loginUser.getName() + "님 로그아웃");
         login = false;
         loginUser = null;
+
+        ProductOfficial po = new ProductOfficial();
+        po.official = false;
+        Categoriesoffical.official = false;
     }
 
     public void rename() {

@@ -18,7 +18,8 @@ public class ProductPage {
         return products;
     }
 
-    boolean canShow(Product p) {
+    boolean canShow(Product p)
+    {
         return p != null && !p.getState().equals("판매중지");
     }
 
@@ -34,7 +35,7 @@ public class ProductPage {
         return list;
     }
 
-    void showAllProducts() {
+    public void showall() {
         List<Product> list = getVisibleProducts();
 
         if (list.isEmpty()) {
@@ -43,7 +44,10 @@ public class ProductPage {
         }
 
         System.out.println("===== 상품 목록 =====");
-        for (Product p : list) {
+
+        for (int i = 0; i < list.size(); i++) {
+            Product p = list.get(i);
+
             System.out.println("상품번호 : " + p.getpID());
             System.out.println("상품명 : " + p.getName());
             System.out.println("가격 : " + p.getPrice());
@@ -52,11 +56,11 @@ public class ProductPage {
         }
     }
 
-    void showCategoryProducts(int cID) {
+    public void showbycate(int cID) {
         List<Product> list = getVisibleProducts();
         boolean found = false;
 
-        System.out.println("===== 카테고리별 상품 목록 =====");
+        System.out.println("===== 카테고리벌 상품 목록 =====");
         for (Product p : list) {
             if (p.getcID() == cID) {
                 System.out.println("상품번호 : " + p.getpID());
@@ -73,7 +77,7 @@ public class ProductPage {
         }
     }
 
-    void showPriceAscProducts() {
+    public void priceshow() {
         List<Product> list = getVisibleProducts();
 
         list.sort(Comparator.comparingInt(Product::getPrice));
@@ -92,12 +96,12 @@ public class ProductPage {
         }
     }
 
-    List<Product> searchProducts(String keyword) {
+    List<Product> searchProducts(String itemname) {
         List<Product> list = getVisibleProducts();
         List<Product> result = new ArrayList<>();
 
         for (Product p : list) {
-            if (p.getName() != null && p.getName().contains(keyword)) {
+            if (p.getName() != null && p.getName().contains(itemname)) {
                 result.add(p);
             }
         }
@@ -105,7 +109,7 @@ public class ProductPage {
         return result;
     }
 
-    void showSearchProducts(String keyword) {
+    public void showsearch(String keyword) {
         List<Product> result = searchProducts(keyword);
 
         if (result.isEmpty()) {
@@ -114,7 +118,10 @@ public class ProductPage {
         }
 
         System.out.println("===== 검색 결과 =====");
-        for (Product p : result) {
+
+        for (int i = 0; i < result.size(); i++) {
+            Product p = result.get(i);
+
             System.out.println("상품번호 : " + p.getpID());
             System.out.println("상품명 : " + p.getName());
             System.out.println("가격 : " + p.getPrice());
@@ -122,11 +129,26 @@ public class ProductPage {
             System.out.println("--------------------");
         }
     }
-
-    void showProductDetail(String name) {
+    public Product findById(int pID) {
         List<Product> list = getVisibleProducts();
 
-        for (Product p : list) {
+        for (int i = 0; i < list.size(); i++) {
+            Product p = list.get(i);
+
+            if (p.getpID() == pID) {
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+    public void showdeep(String name) {
+        List<Product> list = getVisibleProducts();
+
+        for (int i = 0; i < list.size(); i++) {
+            Product p = list.get(i);
+
             if (p.getName() != null && p.getName().equals(name)) {
                 System.out.println("===== 상품 상세페이지 =====");
                 System.out.println("상품번호 : " + p.getpID());

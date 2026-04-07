@@ -97,8 +97,6 @@ public class ReadIt {
 
             mapper.writeValue(jsonp, list);
 
-            System.out.println("상품 JSON 생성 완료");
-
         } catch (Exception e) {
             System.out.println("product 가 오류내는 중");
         }
